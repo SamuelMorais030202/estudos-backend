@@ -1,0 +1,18 @@
+const BoockModel = (sequelize, DataTypes) => {
+  const Book = sequelize.define('Book', {
+    title: DataTypes.STRING,
+    author: DataTypes.STRING,
+    pageQuantity: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+  });
+
+  (async () => {
+    await sequelize.sync({ force: false });
+    // As funções vão aqui
+})();
+
+  return Book;
+};
+
+module.exports = BoockModel;
