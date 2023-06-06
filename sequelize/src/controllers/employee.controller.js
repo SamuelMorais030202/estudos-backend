@@ -1,5 +1,3 @@
-// src/controllers/employee.controller.js
-
 const EmployeeService = require('../services/emploee.service');
 
 const getAll = async (_req, res) => {
@@ -12,6 +10,25 @@ const getAll = async (_req, res) => {
   }
 };
 
+/**
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ */
+const getById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const emploee = await EmployeeService.getById(id);
+
+    if (!emploee) return res.status(404).json({ message: 'Employee not found' });
+
+    return res.status(200).json(emploee);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+}
+
 module.exports = {
   getAll,
+  getById,
 };

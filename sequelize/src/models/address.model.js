@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     street: DataTypes.STRING,
     number: DataTypes.INTEGER,
     employeeId: { type: DataTypes.INTEGER, foreignKey: true },
-    // A declaração da Foreign Key é opcional no model
   },
   {
     timestamps: false,
@@ -16,9 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Address.associate = (models) => {
-// define o tipo de relacionamento
     Address.belongsTo(models.Employee,
-    // define qual a foreign key a ser criada
       { foreignKey: 'employeeId', as: 'employees' });
   };
 
